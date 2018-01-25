@@ -86,7 +86,7 @@
       var row = this.get(rowIndex); // [0,1,0]
 
       var counter = 0;
-      for (var i = 0; i < row.length; i++) {
+      for (var i = 0; i < row.length; i++) { //iterate over the indexs in current row
         if (counter < 2) {
           if (row[i] === 1) {
             counter ++;
@@ -135,11 +135,11 @@
           // we check colIndex for every element of the board array
           if (allRows[i][colIndex] === 1) {
             counter ++;
-          } else { // if counter is >= 2 return true
-            return true;
           }
+        } else { // if counter is >= 2 return true
+          return true;
         }
-      }
+      } 
       // or else return false
       return false; // fixme
     },
@@ -153,13 +153,16 @@
       var flag = false;
       for (var i = 0; i < allRows.length; i++) {
         flag = this.hasColConflictAt(i);
+        // can we access counter?
         if (flag === true) {
           return flag;
         }
       }
-      return flag; // fixme
-      // return false;        
+      return flag; 
     },
+    // fixme
+    // return false;        
+    
 
 
 
