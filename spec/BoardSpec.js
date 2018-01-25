@@ -10,6 +10,8 @@ describe('Board', function() {
     var board = new Board(matrix);
     _.map('row col rooks majorDiagonal minorDiagonal queens'.split(' '), function(conflictType) {
       var conflictDetected = board['hasAny' + capitalize(conflictType) + 'Conflicts']();
+      // board['hasAnyRowConflicts']()
+      // board.hasAnyRowConflicts()
       var conflictExpected = _(expectedConflicts).contains(conflictType);
       var message = conflictExpected ? 'should' : 'should not';
 
