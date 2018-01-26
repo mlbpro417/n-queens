@@ -170,14 +170,65 @@
     // --------------------------------------------------------------
     //
     // test if a specific major diagonal on this board contains a conflict
-    hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
+    hasMajorDiagonalConflictAt: function(rowIndex, columnIndex) {
+      //create the board
+      var board = this.rows();
+      //get length of board
+      //iterate through the length of the board
+      //declare a variable, counter
+      //each iteration,
+      //check if counter < 2
+      //if counter < 2, check if the square has '1'
+      //if square has '1', counter++
+      //if counter > 2, return true
+      //return false after the for loop
+
+      var counter = 0;
+
+      for (var i = columnIndex; (i < board.length) && (rowIndex < board.length); i++) {
+        // increment counter if there is a piece
+        if (board[rowIndex][i] === 1) {
+          counter ++;
+        }
+        // if counter is 2 or greater, return true
+        if (counter > 1) {
+          return true;
+        }
+        rowIndex++;
+      }
       return false; // fixme
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      return false; // fixme
+      //create board
+      var board = this.rows();
+      //declare a variable 'flag' to ctach boolean return values
+      var flag = false;
+      var rowIndex = 0;
+      var columnIndex = 0;
+      //iterate through the board length,
+      //each iteration, check through one diagonal row by calling
+      // hasMajorDiagonalConflictAt function, 
+      //and saving the return value in 'flag'
+      //inorder to account for negative inputs, we set value of 'i' accordingly
+      for (var i = 0; i < board.length; i++) {
+        flag = this.hasMajorDiagonalConflictAt(0, columnIndex);
+        if (flag === true) {
+          return flag;
+        }
+        columnIndex++;
+      }
+      for (var i = 0; i < board.length; i++) {
+        flag = this.hasMajorDiagonalConflictAt(rowIndex, 0);
+        if (flag === true) {
+          return flag;
+        }
+        rowIndex++;
+      }
+      return flag; // fixme
     },
+
 
 
 
