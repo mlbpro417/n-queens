@@ -236,13 +236,51 @@
     // --------------------------------------------------------------
     //
     // test if a specific minor diagonal on this board contains a conflict
-    hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
+    hasMinorDiagonalConflictAt: function(rowIndex, columnIndex) {
+      var board = this.rows();
+      var counter = 0;
+
+      for (var i = columnIndex; (i < board.length) && (rowIndex < board.length); i--) {
+        // increment counter if there is a piece
+        if (board[rowIndex][i] === 1) {
+          counter ++;
+        }
+        // if counter is 2 or greater, return true
+        if (counter > 1) {
+          return true;
+        }
+        rowIndex++;
+      }
       return false; // fixme
     },
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
-      return false; // fixme
+      var board = this.rows();
+      //declare a variable 'flag' to ctach boolean return values
+      var flag = false;
+      var rowIndex = 0;
+      var columnIndex = board.length - 1;
+      //iterate through the board length,
+      //each iteration, check through one diagonal row by calling
+      // hasMajorDiagonalConflictAt function, 
+      //and saving the return value in 'flag'
+      //inorder to account for negative inputs, we set value of 'i' accordingly
+      for (var i = 0; i < board.length; i++) {
+        flag = this.hasMajorDiagonalConflictAt(rowIndex, columnIndex);
+        if (flag === true) {
+          return flag;
+        }
+        columnIndex--;
+      }
+      for (var i = 0; i < board.length; i++) {
+        flag = this.hasMajorDiagonalConflictAt(rowIndex, columnIndex);
+        if (flag === true) {
+          return flag;
+        }
+        rowIndex++;
+      }
+      return flag; // fixme
     }
 
     /*--------------------  End of Helper Functions  ---------------------*/
